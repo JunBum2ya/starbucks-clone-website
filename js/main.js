@@ -39,8 +39,7 @@ fadeEls.forEach((fadeEl,index) => {
 });
 
 new Swiper('.notice-line .swiper-container', {
-  slidesPerView: 1,
   direction: 'vertical',
-  // autoplay: true,
-  // loop: true
+  autoplay: true,
+  loop: true
 });
