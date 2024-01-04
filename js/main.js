@@ -43,3 +43,51 @@ new Swiper('.notice-line .swiper-container', {
   autoplay: true,
   loop: true
 });
+new Swiper('.promotion .swiper-container', {
+  slidesPerView: 3,
+  spaceBetween: 10,
+  centeredSlides: true,
+  loop: true,
+  autoplay: {
+    delay: 5000
+  },
+  pagination: {
+    el: '.promotion .swiper-pagination',
+    clickable: true
+  },
+  navigation: {
+    prevEl: '.promotion .swiper-prev',
+    nextEl: '.promotion .swiper-next'
+  }
+});
+
+const promotionEl = document.querySelector('.promotion');
+const promotionToggleBtn = document.querySelector('.toggle-promotion');
+let isHidePromotion = false;
+promotionToggleBtn.addEventListener('click',(ev) => {
+  isHidePromotion = !isHidePromotion;
+  if(isHidePromotion) {
+    // 숨김처리
+    promotionEl.classList.add('hide');
+  } else {
+    // 공개
+    promotionEl.classList.remove('hide');
+  }
+});
+
+function random(min,max) {
+  return parseFloat((Math.random() * (max - min) + min).toFixed(2));
+}
+
+function floatingObject(selector,delay,size) {
+  gsap.to(selector, random(1.5, 2.5), {
+    y: size,
+    repeat: -1,
+    yoyo: true,
+    ease: Power1.easeInOut,
+    delay: random(0, delay)
+  });
+}
+floatingObject('.floating1', 1, 15);
+floatingObject('.floating2', .5, 15);
+floatingObject('.floating3', 1.5, 20);
