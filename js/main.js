@@ -22,13 +22,26 @@ window.addEventListener('scroll',_.throttle((ev) => {
       opacity : 0,
       display: 'none'
     });
+    gsap.to('#to-top', .2, {
+      x: 0
+    });
   } else {
     gsap.to(badgesEl, .6, {
       opacity : 1,
       display: 'block'
     });
+    gsap.to('#to-top', .2, {
+      x: 100
+    });
   }
 }, 300));
+
+const toTopEl = document.querySelector('#to-top');
+toTopEl.addEventListener('click',() => {
+  gsap.to(window, .7, {
+    scrollTo: 0
+  });
+});
 
 const fadeEls = document.querySelectorAll('.visual .fade-in');
 fadeEls.forEach((fadeEl,index) => {
@@ -58,6 +71,16 @@ new Swiper('.promotion .swiper-container', {
   navigation: {
     prevEl: '.promotion .swiper-prev',
     nextEl: '.promotion .swiper-next'
+  }
+});
+new Swiper('.awards .swiper-container', {
+  autoplay: true,
+  loop: true,
+  spaceBetween: 30,
+  slidesPerView: 5,
+  navigation: {
+    prevEl: '.awards .swiper-prev',
+    nextEl: '.awards .swiper-next'
   }
 });
 
@@ -91,3 +114,17 @@ function floatingObject(selector,delay,size) {
 floatingObject('.floating1', 1, 15);
 floatingObject('.floating2', .5, 15);
 floatingObject('.floating3', 1.5, 20);
+
+const spyEls = document.querySelectorAll('section.scroll-spy');
+spyEls.forEach((spyEl,index) => {
+  new ScrollMagic
+  .Scene({
+    triggerElement: spyEl,
+    triggerHook: .8
+  })
+  .setClassToggle(spyEl, 'show')
+  .addTo(new ScrollMagic.Controller());
+});
+
+const thisYear = document.querySelector('.this-year');
+thisYear.textContent = new Date().getFullYear();
