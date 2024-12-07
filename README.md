@@ -88,3 +88,4 @@
       .addTo(new ScrollMagic.Controller());
    });
    ```
+순수 html
